@@ -1,0 +1,27 @@
+[config]
+skip_core_tasks = true
+
+[tasks.check]
+script = '''
+cargo check
+'''
+
+[tasks.test]
+script = '''
+cargo test
+'''
+
+[tasks.run]
+script = '''
+cargo run
+'''
+
+[tasks.relaese]
+script = '''
+cargo build -r
+'''
+
+[tasks.task_test]
+script = '''
+echo "task can run!"
+'''
