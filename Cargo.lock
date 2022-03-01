@@ -185,18 +185,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "discord_test"
-version = "0.1.0"
-dependencies = [
- "dotenv",
- "serenity",
- "tokio",
- "tracing",
- "tracing-appender",
- "tracing-subscriber",
-]
-
-[[package]]
 name = "dotenv"
 version = "0.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -954,6 +942,18 @@ dependencies = [
  "typemap_rev",
  "url",
  "uwl",
+]
+
+[[package]]
+name = "serenity_discord_bot_test"
+version = "0.1.0"
+dependencies = [
+ "dotenv",
+ "serenity",
+ "tokio",
+ "tracing",
+ "tracing-appender",
+ "tracing-subscriber",
 ]
 
 [[package]]
