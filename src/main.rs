@@ -1,7 +1,7 @@
 extern crate serenity_discord_bot_test;
 
-use serenity_discord_bot_test::{bot_builder, Config, logging_init};
 use dotenv::dotenv;
+use serenity_discord_bot_test::{bot_builder, logging_init, Config};
 
 #[tokio::main]
 async fn main() {

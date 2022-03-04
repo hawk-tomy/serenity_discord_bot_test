@@ -5,16 +5,16 @@ use std::env;
 use std::io;
 
 use serenity::client::Client;
-use serenity::prelude::SerenityError;
 use serenity::framework::standard::StandardFramework;
+use serenity::prelude::SerenityError;
 
 use tracing::{
     subscriber::{set_global_default, SetGlobalDefaultError},
-    Level
+    Level,
 };
 use tracing_appender::rolling::daily;
 use tracing_subscriber::{
-    fmt::{Layer, writer::MakeWriterExt},
+    fmt::{writer::MakeWriterExt, Layer},
     layer::SubscriberExt,
     registry,
 };
@@ -35,7 +35,9 @@ impl Config {
         let is_debug = env::var("IS_DEBUG").is_ok();
 
         Ok(Config {
-            token, prefix, is_debug
+            token,
+            prefix,
+            is_debug,
         })
     }
 }
@@ -49,30 +51,24 @@ pub fn logging_init(config: &Config) -> Result<(), SetGlobalDefaultError> {
     let file_appender = daily("./log", "bot.log");
 
     let subscriber = registry()
-        .with(
-            Layer::new()
-                .with_writer(io::stdout.with_max_level(stdout_level))
-        )
+        .with(Layer::new().with_writer(io::stdout.with_max_level(stdout_level)))
         .with(
             Layer::new()
                 .with_writer(file_appender.with_max_level(Level::INFO))
-                .json()
+                .json(),
         );
 
     set_global_default(subscriber)
 }
 
-pub async fn bot_builder(config: Config)-> Result<Client, SerenityError> {
+pub async fn bot_builder(config: Config) -> Result<Client, SerenityError> {
     let framework = StandardFramework::new()
         .configure(|c| {
             //set prefix
             c.prefix(config.prefix)
         })
-
         //add command groups
-        .group(&GENERAL_GROUP)
-
-        ;
+        .group(&GENERAL_GROUP);
 
     let client = Client::builder(&config.token)
         .event_handler(Handler)

@@ -1,5 +1,5 @@
 use serenity::async_trait;
-use serenity::client::{EventHandler, Context};
+use serenity::client::{Context, EventHandler};
 use serenity::model::prelude::Ready;
 use tracing::info;
 

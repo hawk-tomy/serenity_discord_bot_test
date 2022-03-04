@@ -1,22 +1,29 @@
 [config]
 skip_core_tasks = true
 
+[tasks.fmt]
+command = "cargo"
+args = ["fmt"]
+
 [tasks.check]
 command = "cargo"
 args = ["check"]
+dependencies = ["fmt"]
 
 [tasks.test]
 command = "cargo"
 args = ["test"]
+dependencies = ["check"]
 
 [tasks.run]
 command = "cargo"
 args = ["run"]
+dependencies = ["check"]
 
 [tasks.relaese]
 command = "cargo"
 args = ["build", "-r"]
-watch = true
+dependencies = ["check"]
 
 [tasks.task_test]
 windows_alias = "windows_task_test"
