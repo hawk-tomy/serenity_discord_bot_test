@@ -2,26 +2,31 @@
 skip_core_tasks = true
 
 [tasks.check]
-script = '''
-cargo check
-'''
+command = "cargo"
+args = ["check"]
 
 [tasks.test]
-script = '''
-cargo test
-'''
+command = "cargo"
+args = ["test"]
 
 [tasks.run]
-script = '''
-cargo run
-'''
+command = "cargo"
+args = ["run"]
 
 [tasks.relaese]
-script = '''
-cargo build -r
-'''
+command = "cargo"
+args = ["build", "-r"]
+watch = true
 
 [tasks.task_test]
+windows_alias = "windows_task_test"
+alias = "linux_task_test"
+
+[tasks.linux_task_test]
 script = '''
 echo "task can run!"
 '''
+
+[tasks.windows_task_test]
+command = "cmd"
+args = ["/c", "echo", "task can run!"]
