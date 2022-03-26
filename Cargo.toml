@@ -3,11 +3,11 @@ name = "serenity_discord_bot_test"
 version = "0.1.0"
 edition = "2021"
 authors = ["hawk_tomy <67221751+hawk-tomy@users.noreply.github.com>"]
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+macro_util = { path = "./macro_util" }
 tokio = { version = "1.17", features = ["full"] }
-serenity = "0.10"
+serenity = {version = "0.10.10", default-features = true, features = ["unstable_discord_api"] }
 tracing = "0.1.31"
 tracing-subscriber = {version = "0.3.9", features = ["default", "json"]}
 tracing-appender = "0.2.1"

@@ -1,3 +1,4 @@
+mod app_cmd;
 mod commands;
 mod handlers;
 
@@ -19,7 +20,7 @@ use tracing_subscriber::{
     registry,
 };
 
-use commands::GENERAL_GROUP;
+use commands::get_groups;
 use handlers::Handler;
 
 pub struct Config {
@@ -62,13 +63,15 @@ pub fn logging_init(config: &Config) -> Result<(), SetGlobalDefaultError> {
 }
 
 pub async fn bot_builder(config: Config) -> Result<Client, SerenityError> {
-    let framework = StandardFramework::new()
-        .configure(|c| {
-            //set prefix
-            c.prefix(config.prefix)
-        })
-        //add command groups
-        .group(&GENERAL_GROUP);
+    let mut framework = StandardFramework::new().configure(|c| {
+        //set prefix
+        c.prefix(config.prefix)
+    });
+
+    //add command groups
+    for cmd_group in get_groups() {
+        framework = framework.group(cmd_group);
+    }
 
     let client = Client::builder(&config.token)
         .event_handler(Handler)
@@ -76,4 +79,22 @@ pub async fn bot_builder(config: Config) -> Result<Client, SerenityError> {
         .await?;
 
     Ok(client)
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+
+        hello_world();
+    }
+
+    use macro_util::application_command;
+
+    #[hi]
+    #[application_command]
+    fn hello_world() {
+        println!("Hello World!");
+    }
 }

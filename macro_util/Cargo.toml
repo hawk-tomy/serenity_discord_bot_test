@@ -1,0 +1,13 @@
+[package]
+name = "macro_util"
+version = "0.1.0"
+edition = "2021"
+authors = ["hawk_tomy <67221751+hawk-tomy@users.noreply.github.com>"]
+
+[lib]
+proc-macro = true
+
+[dependencies]
+quote = "1.0"
+syn = { version = "1.0", features = ["full", "derive", "extra-traits"] }
+proc-macro2 = "1.0"

@@ -1,5 +1,6 @@
-/target
+target
 .env
 log/*
 !log/.gitkeep
 .vscode
+t_*.rs

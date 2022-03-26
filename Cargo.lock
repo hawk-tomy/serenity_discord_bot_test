@@ -500,6 +500,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "macro_util"
+version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "matches"
 version = "0.1.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -949,6 +958,7 @@ name = "serenity_discord_bot_test"
 version = "0.1.0"
 dependencies = [
  "dotenv",
+ "macro_util",
  "serenity",
  "tokio",
  "tracing",
